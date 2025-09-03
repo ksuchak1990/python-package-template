@@ -6,9 +6,9 @@ build-backend = "setuptools.build_meta"
 name = "{PACKAGE_NAME}"
 description = "A brief description of the package."
 readme = "README.md"
+version = "0.1.0"
 requires-python = ">=3.10"
-license = "GPL-3.0-only"
-license-files = ["LICENSE"]
+license = { text = "MIT" }
 authors = [{ name = "Your Name", email = "you@example.com" }]
 classifiers = [
   "Programming Language :: Python :: 3",
@@ -17,6 +17,7 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Operating System :: OS Independent",
+  "License :: OSI Approved :: MIT License",
 ]
 dependencies = []
 dynamic = ["version"]
