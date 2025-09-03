@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
 
-# Cancel older in-progress runs for the same branch/PR
+# Cancel outdated runs on the same branch/PR
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -27,20 +27,17 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: |
-            requirements.txt
-            requirements-dev.txt
-            requirements-test.txt
-            requirements-*.txt
+            requirements*.txt
+            pyproject.toml
 
       - name: Install dependencies
-        shell: bash  # keeps commands identical across OSes
+        shell: bash
         run: |
           set -e
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
           if [ -f requirements-test.txt ]; then pip install -r requirements-test.txt; fi
-          # If your package is installable (setup.cfg/setup.py/pyproject with setuptools), this will succeed; otherwise it’s ignored.
           pip install -e . || true
           pip install pytest
 
