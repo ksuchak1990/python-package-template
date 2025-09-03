@@ -1,0 +1,14 @@
+name: Release notes (disabled)
+on:
+  push:
+    branches: [ main ]
+permissions:
+  contents: write
+jobs:
+  update:
+    if: vars.ENABLE_RELEASE_DRAFTER == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v6
+        with:
+          config-name: release-drafter.yml
