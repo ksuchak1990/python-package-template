@@ -1,7 +1,23 @@
+.PHONY: venv lint test build clean
+
+venv:
+	python -m venv .venv
+
+lint:
+	pre-commit run --all-files
+
+test:
+	pytest
+
+build:
+	python -m pip install -U build
+	python -m build
+
+clean:
+	rm -rf dist build .pytest_cache *.egg-info
+
 # Get the current directory name (the package name)
 PACKAGE_NAME = $(notdir $(CURDIR))
-
-all: create_dirs
 
 create_dirs:
 	mkdir -p src/$(PACKAGE_NAME)
