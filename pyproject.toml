@@ -1,17 +1,45 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=80", "setuptools-scm>=8", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "{PACKAGE_NAME}"
-version = "0.1.0"
 description = "A brief description of the package."
-authors = [{name = "Your Name", email = "your.email@example.com"}]
-license = "GPL-3.0"
 readme = "README.md"
-requires = []
+requires-python = ">=3.9"
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+authors = [{ name = "Your Name", email = "you@example.com" }]
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GNU General Public License v3 (GPL-3.0)",
-    "Operating System :: OS Independent"
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
 ]
+dependencies = []
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/ORG/REPO"
+Issues   = "https://github.com/ORG/REPO/issues"
+Changelog = "https://github.com/ORG/REPO/releases"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["your_package_name*"]
+namespaces = false
+
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
+version_scheme = "guess-next-dev"
+local_scheme = "no-local-version"
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov"]
+dev = ["ruff", "mypy", "build", "twine"]
