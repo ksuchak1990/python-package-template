@@ -64,6 +64,42 @@ tests/
   test_example.py
 ```
 
+## Versioning and releases
+
+This template uses `setuptools-scm`.
+Package versions are derived from Git tags.
+
+- Tags must follow `vMAJOR.MINOR.PATH` (e.g. `v0.3.1).
+- Commits between tags receive dev versions like `0.3.2.devN`.
+- Pre-releases may use tags such as `v1.0.0rc1`.
+
+Semantic versioning is expected.
+
+### Release checklist
+
+1. Ensure `main` is green (linting, testing).
+2. Update docs/README if needed.
+3. Create and push a tag:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+4. Let GitHub Actions build and publish the artifacts.
+5. Verify the release on PyPI (or TestPyPI).
+
+### Building locally
+
+We can build the package locally using:
+
+```bash
+pythom -m build
+```
+
+which produces build files in `dist/`.
+These local build files are not required for the CI publishing workflow.
+
 ## Licence
 
 This project is licensed under the MIT License
